@@ -1,20 +1,16 @@
 <?php
+require_once __DIR__ . '/TokenController.php';
 
 class Ajax_API extends API_Config {
 
+    /**
+     * @throws JsonException
+     */
     public function __construct()
     {
-        if (!empty($_GET)) {
-
-            if (isset($_GET['token']) && $_GET['token'] == '1234') {
-
-                echo $this->filterRequest($_GET);
-
-            } else {
-
-                echo json_encode(['data' => null, 'error' => 'Bad token']);
-            }
-        }
+        TokenController::inspectToken($_GET, function($array){
+            echo $this->filterRequest($array);
+        });
     }
 
     private function filterRequest($data)
