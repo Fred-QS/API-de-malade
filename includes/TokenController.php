@@ -13,10 +13,9 @@ class TokenController
 
                 return $callback($get);
 
-            } else {
-
-                echo json_encode(['data' => null, 'error' => 'Bad token'], JSON_THROW_ON_ERROR);
             }
+
+            echo json_encode(['data' => null, 'error' => 'Bad token'], JSON_THROW_ON_ERROR);
         }
     }
 }
